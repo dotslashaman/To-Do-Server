@@ -33,6 +33,28 @@ app.post('/addToDo', (req,res) => {
 
 });
 
+app.post('/updateToDo/:id', (req,res) => {
+
+    const taskId = req.params.id;
+    const title = req.body.title;
+    const description = req.body.description;
+    
+
+    const findTask = toDoList.find(task => task.id == taskId);
+
+    if(!findTask) {
+        return res.status(400).send("Task Not Found");
+    }
+
+    findTask.status = true;
+    findTask.title = title;
+    findTask.description = description;
+
+    res.status(200).send("Task Updated Successfully");
+
+
+})
+
 
 app.get('/showList', (req,res) => {
     res.status(200).send(toDoList);
