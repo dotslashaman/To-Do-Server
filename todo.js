@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-let taskId = 1;
+let taskId = 0;
 
 const toDoList = [];
 
@@ -23,7 +23,9 @@ app.post('/addToDo', (req,res) => {
         "status" : false
     }
 
+
     if(toDoList.push(data)) {
+        taskId++;
         return res.status(201).send("Task Added To The List");
     }
      
