@@ -53,6 +53,16 @@ app.post('/updateToDo/:id', (req,res) => {
     res.status(200).send("Task Updated Successfully");
 
 
+});
+
+app.delete('/deleteTask/:id', (req,res) => {
+    const taskId = req.params.id;
+    const taskIndenx = toDoList.findIndex(task => task.id == taskId)
+    if(toDoList.splice(taskIndenx,1)){
+        return res.status(200).send("Task Delted Successfully");
+    };
+
+    res.status(400).send("Invalid Task Id");
 })
 
 
